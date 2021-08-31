@@ -51,7 +51,7 @@ function Products() {
           disabled={!hasNextPage || isFetchingNextPage}
         >
           {isFetchingNextPage
-            ? 'Loading more...'
+            ? 'Loading more....'
             : hasNextPage
               ? 'Load More'
               : 'Nothing more to load'}
