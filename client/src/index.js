@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import App from './App';
+import { AuthProvider } from './contexts/AuthContext';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import './reset.css';
@@ -14,7 +15,9 @@ ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ChakraProvider>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </ChakraProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

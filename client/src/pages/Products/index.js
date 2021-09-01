@@ -11,40 +11,35 @@ function Products() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-    status, } = useInfiniteQuery('products', fetchProductList, {
-      getNextPageParam: (lastGroup, allGroups) => {
-        const morePagesExist = lastGroup?.length === 12;
+    status,
+  } = useInfiniteQuery('products', fetchProductList, {
+    getNextPageParam: (lastGroup, allGroups) => {
+      const morePagesExist = lastGroup?.length === 12;
 
-        if (!morePagesExist) {
-          return;
-        }
-        return allGroups.length + 1;
+      if (!morePagesExist) {
+        return;
       }
-    });
-  if (status === 'loading') return 'Loading...'
+      return allGroups.length + 1;
+    },
+  });
+  if (status === 'loading') return 'Loading...';
 
-  if (status === 'error') return 'An error has occurred: ' + error.message
-
+  if (status === 'error') return 'An error has occurred: ' + error.message;
 
   return (
     <div>
       <Grid templateColumns="repeat(3, 1fr)" gap={4}>
-        {
-          data.pages.map((group, i) => (
-            <React.Fragment key={i}>
-              {
-                group.map((item) => (
-                  <Box w='100%' key={item._id}>
-                    <Card item={item} />
-                  </Box>
-                ))
-              }
-            </React.Fragment>
-          ))
-        }
+        {data.pages.map((group, i) => (
+          <React.Fragment key={i}>
+            {group.map((item) => (
+              <Box w="100%" key={item._id}>
+                <Card item={item} />
+              </Box>
+            ))}
+          </React.Fragment>
+        ))}
       </Grid>
-
-      <Flex mt='10' justifyContent='center'>
+      <Flex mt="10" justifyContent="center">
         <Button
           onClick={() => fetchNextPage()}
           isLoading={isFetchingNextPage}
@@ -53,8 +48,8 @@ function Products() {
           {isFetchingNextPage
             ? 'Loading more....'
             : hasNextPage
-              ? 'Load More'
-              : 'Nothing more to load'}
+            ? 'Load More'
+            : 'Nothing more to load'}
         </Button>
       </Flex>
     </div>
