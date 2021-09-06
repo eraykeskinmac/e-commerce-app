@@ -14,7 +14,7 @@ import { fetchRegister } from '../../../api';
 import { useAuth } from '../../../contexts/AuthContext';
 import validationSchema from './validations';
 
-function Signup() {
+function Signup({ history }) {
   const { login } = useAuth();
 
   const formik = useFormik({
@@ -35,6 +35,7 @@ function Signup() {
       } catch (e) {
         bag.setErrors({ general: e.response.data.message });
       }
+      history.push('/profile');
     },
   });
   return (

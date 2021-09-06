@@ -12,7 +12,7 @@ function Navbar() {
     <nav className={styles.nav}>
       <div className={styles.left}>
         <div className="logo">
-          <Link to="/products">eCommerce</Link>
+          <Link to="/">eCommerce</Link>
         </div>
 
         <ul className={styles.menu}>
