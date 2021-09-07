@@ -31,11 +31,11 @@ function Signup({ history }) {
           password: values.password,
         });
         login(registerReponse);
+        history.push('/profile');
         console.log(registerReponse);
       } catch (e) {
         bag.setErrors({ general: e.response.data.message });
       }
-      history.push('/profile');
     },
   });
   return (
