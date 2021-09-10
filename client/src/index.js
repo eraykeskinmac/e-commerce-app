@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import App from './App';
+//Contexts
 import { AuthProvider } from './contexts/AuthContext';
+import { BasketProvider } from './contexts/BasketContext';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import './reset.css';
@@ -16,7 +18,9 @@ ReactDOM.render(
     <QueryClientProvider client={queryClient}>
       <ChakraProvider>
         <AuthProvider>
-          <App />
+          <BasketProvider>
+            <App />
+          </BasketProvider>
         </AuthProvider>
       </ChakraProvider>
       <ReactQueryDevtools initialIsOpen={false} />
