@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Signin from './pages/Auth/Signin';
 import Signup from './pages/Auth/Signup';
+import Basket from './pages/Basket';
 import ProductDetail from './pages/ProductDetail';
 import Products from './pages/Products';
 import Profile from './pages/Profile';
@@ -20,6 +21,7 @@ function App() {
             <Route path="/product/:product_id" component={ProductDetail} />
             <Route path="/sigin" component={Signin} />
             <Route path="/signup" component={Signup} />
+            <Route path="/basket" component={Basket} />
             <ProtectedRoute path="/profile" component={Profile} />
           </Switch>
         </div>
