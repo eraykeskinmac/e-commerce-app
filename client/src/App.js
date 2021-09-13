@@ -7,6 +7,7 @@ import Basket from './pages/Basket';
 import Erorr404 from './pages/Erorr404';
 import ProductDetail from './pages/ProductDetail';
 import Products from './pages/Products';
+import Profile from './pages/Profile';
 import ProtectedRoute from './pages/ProtectedRoute';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/sigin" component={Signin} />
             <Route path="/signup" component={Signup} />
             <Route path="/basket" component={Basket} />
+            <Route path="/profile" component={Profile} />
             <Route path="*" component={Basket} />
             <ProtectedRoute path="/profile" component={Erorr404} />
           </Switch>
