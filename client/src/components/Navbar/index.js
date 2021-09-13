@@ -1,18 +1,17 @@
 import { Button } from '@chakra-ui/react';
-import { React } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useBasket } from '../../contexts/BasketContext';
 import styles from './styles.module.css';
 
 function Navbar() {
-  const { loggedIn } = useAuth();
+  const { loggedIn, user } = useAuth();
   const { items } = useBasket();
 
   return (
     <nav className={styles.nav}>
       <div className={styles.left}>
-        <div className="logo">
+        <div className={styles.logo}>
           <Link to="/">eCommerce</Link>
         </div>
 
@@ -22,10 +21,11 @@ function Navbar() {
           </li>
         </ul>
       </div>
+
       <div className={styles.right}>
         {!loggedIn && (
           <>
-            <Link to="/sigin">
+            <Link to="/signin">
               <Button colorScheme="pink">Login</Button>
             </Link>
             <Link to="/signup">
@@ -33,6 +33,7 @@ function Navbar() {
             </Link>
           </>
         )}
+
         {loggedIn && (
           <>
             {items.length > 0 && (
@@ -42,6 +43,15 @@ function Navbar() {
                 </Button>
               </Link>
             )}
+
+            {user?.role === 'admin' && (
+              <Link to="/admin">
+                <Button colorScheme="pink" variant="ghost">
+                  Admin
+                </Button>
+              </Link>
+            )}
+
             <Link to="/profile">
               <Button>Profile</Button>
             </Link>
