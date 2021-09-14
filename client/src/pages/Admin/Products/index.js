@@ -1,15 +1,21 @@
 import { Text } from '@chakra-ui/react';
 import { Popconfirm, Table } from 'antd';
 import { useMemo } from 'react';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { Link } from 'react-router-dom';
-import { fetchProductList } from '../../../api';
+import { deleteProduct, fetchProductList } from '../../../api';
 
 function Products() {
+  const queryClient = useQueryClient();
+
   const { isLoading, isError, data, error } = useQuery(
     'admin:products',
     fetchProductList
   );
+
+  const deleteMutation = useMutation(deleteProduct, {
+    onSuccess: () => queryClient.invalidateQueries('admin:products'), 
+  });
 
   const columns = useMemo(() => {
     return [
@@ -37,7 +43,11 @@ function Products() {
             <Popconfirm
               title="Are you sure?"
               onConfirm={() => {
-                alert('silindi');
+                deleteMutation.mutate(record._id, {
+                  onSuccess: () => {
+                    console.log('success');
+                  },
+                });
               }}
               onCancel={() => console.log('iptal edildi')}
               okText="Yes"
