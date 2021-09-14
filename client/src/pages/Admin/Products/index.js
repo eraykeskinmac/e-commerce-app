@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react';
+import { Button, Flex, Text } from '@chakra-ui/react';
 import { Popconfirm, Table } from 'antd';
 import { useMemo } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
@@ -14,7 +14,7 @@ function Products() {
   );
 
   const deleteMutation = useMutation(deleteProduct, {
-    onSuccess: () => queryClient.invalidateQueries('admin:products'), 
+    onSuccess: () => queryClient.invalidateQueries('admin:products'),
   });
 
   const columns = useMemo(() => {
@@ -73,9 +73,14 @@ function Products() {
 
   return (
     <div>
-      <Text fontSize="2xl" p="5">
-        Products
-      </Text>
+      <Flex justifyContent="space-between" alignItems="center">
+        <Text fontSize="2xl" p="5">
+          Products
+        </Text>
+        <Link to="/admin/products/new">
+          <Button>Add new product</Button>
+        </Link>
+      </Flex>
 
       <Table dataSource={data} columns={columns} rowKey="_id"></Table>
     </div>

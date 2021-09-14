@@ -5,6 +5,7 @@ import Home from './Home';
 import Orders from './Orders';
 import ProductDetail from './ProductDetail';
 import Products from './Products';
+import NewProduct from './Products/new';
 import './style.css';
 function Admin() {
   const { path, url } = useRouteMatch();
@@ -30,6 +31,11 @@ function Admin() {
           <Route exact path={path} component={Home}></Route>
           <Route path={`${path}/orders`} component={Orders}></Route>
           <Route exact path={`${path}/products`} component={Products}></Route>
+          <Route
+            exact
+            path={`${path}/products/new`}
+            component={NewProduct}
+          ></Route>
           <Route
             path={`${path}/products/:product_id`}
             component={ProductDetail}
